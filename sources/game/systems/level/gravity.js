@@ -5,9 +5,9 @@ function gravity(entity) {
 
   positionComponent.y = (positionComponent.y +(2*velocityComponent.vy));
 
-  if(velocityComponent.vy<=1){
-    velocityComponent.vy+=0.02;
-  }
+  if(velocityComponent.vy<=velocityComponent.vyMax){
+    velocityComponent.vy+=(0.3);
+    }
 
-}
-export {gravity};
+  }
+  export {gravity};

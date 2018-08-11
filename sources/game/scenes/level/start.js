@@ -21,8 +21,8 @@ function start() {
         new Direction('DOWN'),
         new Input(['KEY_UP', 'KEY_RIGHT', 'KEY_DOWN', 'KEY_LEFT']),
         new Position(this.size.width/2, this.size.height-150),
-        new Hitbox(this.size.width/2, this.size.height-150,80, 120),
-        new Velocity(0,0),
+        new Hitbox(this.size.width/2, this.size.height-150,80, 120,true,true),
+        new Velocity(0,0,-8,6),
         new Animation(this.assets.images['mainChar'], [{'x': 0, 'y': 0, 'width': 80, 'height': 120}]),
         new Spritesheet(
             this.assets.images['mainChar'],
@@ -51,20 +51,19 @@ function start() {
     ]));
 
     this.world.add(new Entity('floor', [
-
         new Position(0, this.size.height-40),
         new Animation(this.assets.images['floor'], [{'x': 0, 'y': 0, 'width': 650, 'height': 40}]),
-        new Hitbox(0, this.size.height-40,450,40)
+        new Hitbox(0, this.size.height-40,450,40,false)
     ]));
 
-    /*for (var i = 0; i< 10; i++ ){
+    for (var i = 0; i< 100; i++ ){
         this.world.add(new Entity('box', [
-            new Position(Math.random(0,), 0-200*i),
-            new Animation(this.assets.images['box'], [{'x': 0, 'y': 0, 'width': 100, 'height': 100}]),
-            new Hitbox(-10000, -10000-40,100,100),
-            new Velocity(0,0)
+            new Position(Math.floor(Math.random() * Math.floor(600)), (-600+(-100*(i+1)))),
+            new Animation(this.assets.images['box'], [{'x': 0, 'y': 0, 'width': 40, 'height': 40}]),
+            new Hitbox(50, -1000,40,40,false),
+            new Velocity(0,0,-1.2,1.2)
         ]));
-    }*/
+    }
 
 }
 

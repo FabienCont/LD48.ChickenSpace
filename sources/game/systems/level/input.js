@@ -22,9 +22,7 @@ function input(entity) {
             switch (input.action) {
               case 'KEY_UP':
                   if(!entity.has(['jump'])){
-                    entity.add([
-                        new Velocity(0,-1.2)
-                    ]);
+                        velocityComponent.vy= velocityComponent.vyMin;
                   }
                   entity.add([
                       new Jump()
