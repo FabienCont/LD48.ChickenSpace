@@ -8,8 +8,7 @@ new Theatre({
     'loading': 'loading',
     'opening': 'demo',
     'size': {
-
-        'width': 320,
-        'height': 288
+        'width': 450 ,
+        'height': 600
     }
 });
