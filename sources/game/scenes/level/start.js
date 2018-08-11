@@ -6,6 +6,7 @@ import {Input} from 'components/input.js';
 import {Position} from 'components/position.js';
 import {Spritesheet} from 'components/spritesheet.js';
 import {Velocity} from 'components/velocity.js';
+import {Hitbox} from 'components/hitbox.js';
 
 function start() {
 
@@ -19,7 +20,8 @@ function start() {
 
         new Direction('DOWN'),
         new Input(['KEY_UP', 'KEY_RIGHT', 'KEY_DOWN', 'KEY_LEFT']),
-        new Position(this.size.width/2, this.size.height-60),
+        new Position(this.size.width/2, this.size.height-150),
+        new Hitbox(this.size.width/2, this.size.height-150,80, 120),
         new Velocity(0,0),
         new Animation(this.assets.images['mainChar'], [{'x': 0, 'y': 0, 'width': 80, 'height': 120}]),
         new Spritesheet(
@@ -47,6 +49,23 @@ function start() {
             }
         )
     ]));
+
+    this.world.add(new Entity('floor', [
+
+        new Position(0, this.size.height-40),
+        new Animation(this.assets.images['floor'], [{'x': 0, 'y': 0, 'width': 650, 'height': 40}]),
+        new Hitbox(0, this.size.height-40,450,40)
+    ]));
+
+    /*for (var i = 0; i< 10; i++ ){
+        this.world.add(new Entity('box', [
+            new Position(Math.random(0,), 0-200*i),
+            new Animation(this.assets.images['box'], [{'x': 0, 'y': 0, 'width': 100, 'height': 100}]),
+            new Hitbox(-10000, -10000-40,100,100),
+            new Velocity(0,0)
+        ]));
+    }*/
+
 }
 
 export {start};
