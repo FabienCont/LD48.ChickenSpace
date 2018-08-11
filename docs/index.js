@@ -841,6 +841,7 @@ function render() {
     this.context.fillRect(0, 0, this.size.width, this.size.height);
 
     this.systems.render.update.call(this, this.world.entities);
+    this.systems.renderText.update.call(this,this.world.entities);
 }
 
 
@@ -862,6 +863,8 @@ function render() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_systems_level_gravity_js__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_systems_level_collision_js__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_systems_level_hitboxUpdate_js__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_systems_level_renderText_js__ = __webpack_require__(51);
+
 
 
 
@@ -887,6 +890,7 @@ function setup() {
         'animate': new __WEBPACK_IMPORTED_MODULE_2_modules_world_js__["b" /* System */](['animation', 'spritesheet'], __WEBPACK_IMPORTED_MODULE_3_systems_level_animate_js__["a" /* animate */].bind(this)),
         'input': new __WEBPACK_IMPORTED_MODULE_2_modules_world_js__["b" /* System */](['input'], __WEBPACK_IMPORTED_MODULE_4_systems_level_input_js__["a" /* input */].bind(this)),
         'render': new __WEBPACK_IMPORTED_MODULE_2_modules_world_js__["b" /* System */](['position', 'animation'], __WEBPACK_IMPORTED_MODULE_5_systems_level_render_js__["a" /* render */].bind(this)),
+        'renderText' : new __WEBPACK_IMPORTED_MODULE_2_modules_world_js__["b" /* System */](['score','position'],__WEBPACK_IMPORTED_MODULE_10_systems_level_renderText_js__["a" /* renderText */].bind(this)),
         'movement' : new __WEBPACK_IMPORTED_MODULE_2_modules_world_js__["b" /* System */](['position','direction'],__WEBPACK_IMPORTED_MODULE_6_systems_level_movement_js__["a" /* movement */].bind(this)),
         'gravity' : new __WEBPACK_IMPORTED_MODULE_2_modules_world_js__["b" /* System */](['position','velocity'],__WEBPACK_IMPORTED_MODULE_7_systems_level_gravity_js__["a" /* gravity */].bind(this)),
         'hitboxUpdate' :new __WEBPACK_IMPORTED_MODULE_2_modules_world_js__["b" /* System */](['hitbox'],__WEBPACK_IMPORTED_MODULE_9_systems_level_hitboxUpdate_js__["a" /* hitboxUpdate */].bind(this)),
@@ -1336,12 +1340,23 @@ function render(entity) {
     const animationComponent = entity.get('animation');
     const positionComponent = entity.get('position');
 
+    if(entity.name=="hero"){
+
+      if(positionComponent.y<this.size.height/2){
+        this.camera.y = positionComponent.y - (this.size.height/2);
+      }else{
+        this.camera.y=0;
+      }
+    }
+
     this.context.drawImage(
 
         animationComponent.image,
         animationComponent.current.x, animationComponent.current.y, animationComponent.current.width, animationComponent.current.height,
-        positionComponent.x , positionComponent.y, animationComponent.current.width, animationComponent.current.height
+        positionComponent.x -this.camera.x , positionComponent.y-this.camera.y, animationComponent.current.width, animationComponent.current.height
+
     );
+
 }
 
 
@@ -1629,6 +1644,8 @@ function hitboxUpdate(entity) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_components_spritesheet_js__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_components_velocity_js__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_components_hitbox_js__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_components_Score_js__ = __webpack_require__(50);
+
 
 
 
@@ -1645,13 +1662,17 @@ function start() {
 
     this.delta = 0;
     this.inputs.length = 0;
+    this.camera = {
+      'x' :0,
+      'y':0
+    };
     this.world = new __WEBPACK_IMPORTED_MODULE_0_modules_world_js__["c" /* World */]();
 
     this.world.add(new __WEBPACK_IMPORTED_MODULE_0_modules_world_js__["a" /* Entity */]('hero', [
-
         new __WEBPACK_IMPORTED_MODULE_2_components_direction_js__["a" /* Direction */]('DOWN'),
         new __WEBPACK_IMPORTED_MODULE_3_components_input_js__["a" /* Input */](['KEY_UP', 'KEY_RIGHT', 'KEY_DOWN', 'KEY_LEFT']),
         new __WEBPACK_IMPORTED_MODULE_4_components_position_js__["a" /* Position */](this.size.width/2, this.size.height-150),
+        new __WEBPACK_IMPORTED_MODULE_8_components_Score_js__["a" /* Score */](),
         new __WEBPACK_IMPORTED_MODULE_7_components_hitbox_js__["a" /* Hitbox */](this.size.width/2, this.size.height-150,80, 120,true,true),
         new __WEBPACK_IMPORTED_MODULE_6_components_velocity_js__["a" /* Velocity */](0,0,-8,6),
         new __WEBPACK_IMPORTED_MODULE_1_components_animation_js__["a" /* Animation */](this.assets.images['mainChar'], [{'x': 0, 'y': 0, 'width': 80, 'height': 120}]),
@@ -1668,15 +1689,6 @@ function start() {
                'RUN_DOWN': [{'x': 0, 'y': 64, 'width': 32, 'height': 32}, {'x': 32, 'y': 64, 'width': 32, 'height': 32}, {'x': 64, 'y': 64, 'width': 32, 'height': 32}, {'x': 96, 'y': 64, 'width': 32, 'height': 32}],
                'RUN_LEFT': [{'x': 0, 'y': 96, 'width': 32, 'height': 32}, {'x': 32, 'y': 96, 'width': 32, 'height': 32}, {'x': 64, 'y': 96, 'width': 32, 'height': 32}, {'x': 96, 'y': 96, 'width': 32, 'height': 32}]
 
-            //     'IDLE_UP': [{'x': 96, 'y': 0, 'width': 32, 'height': 32}],
-            //     'IDLE_RIGHT': [{'x': 96, 'y': 32, 'width': 32, 'height': 32}],
-            //     'IDLE_DOWN': [{'x': 96, 'y': 64, 'width': 32, 'height': 32}],
-            //     'IDLE_LEFT': [{'x': 96, 'y': 96, 'width': 32, 'height': 32}],
-            //
-            //     'RUN_UP': [{'x': 0, 'y': 0, 'width': 32, 'height': 32}, {'x': 32, 'y': 0, 'width': 32, 'height': 32}, {'x': 64, 'y': 0, 'width': 32, 'height': 32}, {'x': 96, 'y': 0, 'width': 32, 'height': 32}],
-            //     'RUN_RIGHT': [{'x': 0, 'y': 32, 'width': 32, 'height': 32}, {'x': 32, 'y': 32, 'width': 32, 'height': 32}, {'x': 64, 'y': 32, 'width': 32, 'height': 32}, {'x': 96, 'y': 32, 'width': 32, 'height': 32}],
-            //     'RUN_DOWN': [{'x': 0, 'y': 64, 'width': 32, 'height': 32}, {'x': 32, 'y': 64, 'width': 32, 'height': 32}, {'x': 64, 'y': 64, 'width': 32, 'height': 32}, {'x': 96, 'y': 64, 'width': 32, 'height': 32}],
-            //     'RUN_LEFT': [{'x': 0, 'y': 96, 'width': 32, 'height': 32}, {'x': 32, 'y': 96, 'width': 32, 'height': 32}, {'x': 64, 'y': 96, 'width': 32, 'height': 32}, {'x': 96, 'y': 96, 'width': 32, 'height': 32}]
             }
         )
     ]));
@@ -1687,7 +1699,7 @@ function start() {
         new __WEBPACK_IMPORTED_MODULE_7_components_hitbox_js__["a" /* Hitbox */](0, this.size.height-40,450,40,false)
     ]));
 
-    for (var i = 0; i< 100; i++ ){
+    for (var i = 0; i< 30; i++ ){
         this.world.add(new __WEBPACK_IMPORTED_MODULE_0_modules_world_js__["a" /* Entity */]('box', [
             new __WEBPACK_IMPORTED_MODULE_4_components_position_js__["a" /* Position */](Math.floor(Math.random() * Math.floor(600)), (-600+(-100*(i+1)))),
             new __WEBPACK_IMPORTED_MODULE_1_components_animation_js__["a" /* Animation */](this.assets.images['box'], [{'x': 0, 'y': 0, 'width': 40, 'height': 40}]),
@@ -1753,7 +1765,6 @@ var Hitbox=function(x,y,width,height,pushable,destructible){
 function update(delta) {
 
     // console.log('update level scene');
-
     this.delta = delta;
 
     this.systems.input.update.call(this, this.world.entities);
@@ -1762,6 +1773,8 @@ function update(delta) {
     this.systems.gravity.update.call(this,this.world.entities);
     this.systems.hitboxUpdate.update.call(this,this.world.entities);
     this.systems.collision.update.call(this,this.world.entities);
+    this.systems.renderText.update.call(this,this.world.entities);
+
     this.inputs.length = 0;
 }
 
@@ -1828,6 +1841,48 @@ function shuffle(array) {
 }
 
 // exports current module as a function
+
+
+
+/***/ }),
+/* 49 */,
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Score; });
+function Score() {
+
+    this.name = 'score';
+    this.total = 0;
+    
+}
+
+
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return renderText; });
+function renderText(entity) {
+
+     const scoreComponent = entity.get('score');
+     const positionComponent = entity.get ('position');
+
+     if(-positionComponent.y>scoreComponent.total  && -positionComponent.y > 0){
+         scoreComponent.total=-positionComponent.y;
+     }
+
+     this.context.lineWidth = 2;
+     this.context.font="20px Arial";
+     this.context.strokeStyle = 'black';
+     this.context.strokeText("Score : "+scoreComponent.total, this.size.width - 100, 50);
+
+}
+
 
 
 
