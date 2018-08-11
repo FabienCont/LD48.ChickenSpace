@@ -2,11 +2,11 @@ import {Keyboard} from 'modules/keyboard.js';
 import {DOWN, LEFT, RIGHT, UP} from 'modules/keycodes.js';
 import {System} from 'modules/world.js';
 
-import {animate} from 'systems/demo/animate.js';
-import {input} from 'systems/demo/input.js';
-import {render} from 'systems/demo/render.js';
-import {movement} from 'systems/demo/movement.js';
-import {gravity} from 'systems/demo/gravity.js';
+import {animate} from 'systems/level/animate.js';
+import {input} from 'systems/level/input.js';
+import {render} from 'systems/level/render.js';
+import {movement} from 'systems/level/movement.js';
+import {gravity} from 'systems/level/gravity.js';
 
 function setup() {
 

@@ -21,11 +21,13 @@ function input(entity) {
 
             switch (input.action) {
               case 'KEY_UP':
-              
+                  if(!entity.has(['jump'])){
+                    entity.add([
+                        new Velocity(0,-1.2)
+                    ]);
+                  }
                   entity.add([
-                      new Velocity(0,-1.2),
                       new Jump()
-                      //new Animation(spritesheetComponent.image, spritesheetComponent.animations['RUN_RIGHT'])
                   ]);
 
               break;
