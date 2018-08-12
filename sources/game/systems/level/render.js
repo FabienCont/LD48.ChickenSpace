@@ -25,7 +25,7 @@ function render(entity) {
 
         animationComponent.image,
         animationComponent.current.x, animationComponent.current.y, animationComponent.current.width, animationComponent.current.height,
-        positionComponent.x -this.camera.x , positionComponent.y-this.camera.y, animationComponent.current.width, animationComponent.current.height
+        positionComponent.x -this.camera.x , positionComponent.y-this.camera.y - animationComponent.offset, animationComponent.current.width*  animationComponent.scale , animationComponent.current.height* animationComponent.scale
 
     );
 

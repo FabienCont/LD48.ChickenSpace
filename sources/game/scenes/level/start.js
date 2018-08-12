@@ -29,8 +29,20 @@ function start() {
     this.world = new World();
     this.world.limitY= 0;
 
-      var startHeightSize =80;
-      var startWidthSize=40;
+    this.world.add(new Entity('floor', [
+        new Position(0, this.size.height-30),
+        new Animation(this.assets.images['floor'], [{'x': 0, 'y': 0, 'width': 650, 'height': 40}],10),
+        new Hitbox(0, this.size.height-40,450,20,false),
+        new Real(),
+        new TouchGround(),
+    ]));
+
+
+          var startHeightSize =52;
+          var startWidthSize=64;
+
+
+    var xSprite =64;
     this.world.add(new Entity('hero', [
         new Direction('DOWN'),
         new Input(['KEY_UP', 'KEY_RIGHT', 'KEY_DOWN', 'KEY_LEFT']),
@@ -42,7 +54,12 @@ function start() {
         new Hitbox(80, this.size.height-150,startWidthSize, startHeightSize,true,true),
         new Velocity(0,0,-10,7),
       //  new Animation(this.assets.images['mainChar'], [{'x': 0, 'y': 0, 'width': 80, 'height': 120}]),
-        new Animation(this.assets.images['mainChar'], [{'x': 0, 'y': 0, 'width': startWidthSize, 'height': startHeightSize}]),
+        new Animation(this.assets.images['mainChar'],
+        [{'x': 0, 'y': 0, 'width': startWidthSize, 'height': startHeightSize},
+        {'x': xSprite*1, 'y': 0, 'width': startWidthSize, 'height': startHeightSize},
+        {'x': xSprite*2, 'y': 0, 'width': startWidthSize, 'height': startHeightSize},
+        {'x': xSprite*3, 'y': 0, 'width': startWidthSize, 'height': startHeightSize},
+        {'x': xSprite*4, 'y': 0, 'width': startWidthSize, 'height': startHeightSize}]),
         new Spritesheet(
             this.assets.images['mainChar'],
              {
@@ -58,14 +75,6 @@ function start() {
 
             }
         )
-    ]));
-
-    this.world.add(new Entity('floor', [
-        new Position(0, this.size.height-40),
-        new Animation(this.assets.images['floor'], [{'x': 0, 'y': 0, 'width': 650, 'height': 40}]),
-        new Hitbox(0, this.size.height-40,450,40,false),
-        new Real(),
-        new TouchGround(),
     ]));
 
     this.world.nuageCount=0;
@@ -84,11 +93,15 @@ function start() {
     }
 
     this.world.boxCount=0;
+
+    var boxSize=40;
+    var scale = 40/300;
+
     for (var i = 0; i< 30; i++ ){
         this.world.add(new Entity('box', [
             new Position(random(450), (-180*(i+1))),
-            new Animation(this.assets.images['box'], [{'x': 0, 'y': 0, 'width': 40, 'height': 40}]),
-            new Hitbox(50, -1000,40,40,false),
+            new Animation(this.assets.images['box'], [{'x': 0, 'y': 0, 'width': 300, 'height': 300}],0,scale),
+            new Hitbox(50, -1000,boxSize,boxSize,false),
             new Velocity(0,0,-1.2,1.2),
             new Real(),
             new Block()

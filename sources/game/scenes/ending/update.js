@@ -12,6 +12,7 @@ function update(delta) {
     this.systems.gravity.update.call(this,this.world.entities);
     this.systems.hitboxUpdate.update.call(this,this.world.entities);
     this.systems.collisionGame.update.call(this,this.world.entities);
+    this.systems.updateBlock.update.call(this,this.world.entities);
 
     this.inputs.length = 0;
 }

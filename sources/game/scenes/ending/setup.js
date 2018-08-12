@@ -14,6 +14,7 @@ import {gravity} from 'systems/level/gravity.js';
 import {renderDecor} from 'systems/level/renderDecor.js';
 import {collision as collisionGame} from 'systems/level/collision.js';
 import {hitboxUpdate} from 'systems/level/hitboxUpdate.js';
+import {updateBlock} from 'systems/level/updateBlock.js';
 
 function setup() {
 
@@ -35,7 +36,8 @@ function setup() {
         'gravity' : new System(['position','velocity'],gravity.bind(this)),
         'renderDecor' : new System(['decor','position'],renderDecor.bind(this)),
         'hitboxUpdate' :new System(['hitbox'],hitboxUpdate.bind(this)),
-        'collisionGame' : new System(['hitbox','velocity'],collisionGame.bind(this))
+        'collisionGame' : new System(['hitbox','velocity'],collisionGame.bind(this)),
+        'updateBlock' : new System(['hitbox','velocity','real','block'],updateBlock.bind(this))
     };
 }
 

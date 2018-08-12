@@ -2,15 +2,15 @@ const images = [
 
     {
         'name': 'mainChar',
-        'source': require('./char.png')
+        'source': require('./chicken sprite 3.png')
     },
     {
         'name': 'floor',
-        'source': require('./floor.png')
+        'source': require('./floorGrass.png')
     },
     {
       'name' : 'box',
-      'source' : require ('./box.png')
+      'source' : require ('./woodbox.png')
     },
     {
       'name' : 'nuage',
