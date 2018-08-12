@@ -18,6 +18,7 @@ function start() {
 
     console.log('start level scene');
 
+    this.isLimited=false;
     this.delta = 0;
     this.inputs.length = 0;
     this.camera = {

@@ -5,7 +5,7 @@ function render(entity) {
 
     if(entity.name=="hero"){
 
-      if(positionComponent.y<this.size.height/2 || this.world.limitY< -this.size.height/2){
+      if(positionComponent.y<this.size.height/2 || this.world.limitY< -this.size.height/2 || this.isLimited){
 
         this.camera.y = positionComponent.y - (this.size.height/2);
 
@@ -14,6 +14,7 @@ function render(entity) {
         }
 
         if(this.camera.y >this.world.limitY){
+            this.isLimited=true;
           this.camera.y=this.world.limitY;
         }
       }else{
