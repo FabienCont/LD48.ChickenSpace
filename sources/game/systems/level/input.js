@@ -5,7 +5,6 @@ import {Spritesheet} from 'components/spritesheet.js';
 import {Position} from 'components/position.js';
 import {Velocity} from 'components/velocity.js';
 import {Jump} from 'components/jump.js';
-import {Hitbox} from 'components/hitbox';
 
 function input(entity) {
 

@@ -11,6 +11,10 @@ const images = [
     {
       'name' : 'box',
       'source' : require ('./box.png')
+    },
+    {
+      'name' : 'nuage',
+      'source' : require ('./nuage.png')
     }
 ];
 

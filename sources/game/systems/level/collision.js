@@ -1,5 +1,7 @@
 import {collide} from "modules/collide.js";
-import {collideDistance} from "modules/collideDistance";
+import {collideDistance} from "modules/collideDistance.js";
+import {TouchGround} from "components/touchGround.js";
+
 function collision(entity) {
 
   var BreakException = {};
@@ -8,6 +10,11 @@ function collision(entity) {
 
     var positionComponent = entity.get('position');
     var hitboxComponent =entity.get('hitbox');
+
+    if(entity.name=="hero" &&  positionComponent.y> (this.world.limitY+this.size.height )){
+          entity.remove(['hitbox']);
+          this.load('ending');
+    }
 
     this.world.entities.forEach((otherEntity)=>{
 
@@ -27,11 +34,15 @@ function collision(entity) {
 
             if(entity.has(['jump']) && distance.y<0 ){
               entity.remove(['jump']);
+            }else if(otherEntity.has(['touchGround']) && distance.y<0 && entity.name!='hero'){
+              entity.add([new TouchGround()]);
+              entity.remove(['velocity']);
             }
 
             if(!hitboxComponent.destructible && distance.y<0){
               throw BreakException;
             }else if(hitboxComponent.destructible && distance.y>0){
+              entity.remove(['hitbox']);
               this.load('ending');
             }
           }
