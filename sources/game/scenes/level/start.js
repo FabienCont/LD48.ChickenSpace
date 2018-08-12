@@ -53,7 +53,7 @@ function start() {
         new Score(),
       //  new Hitbox(80, this.size.height-150,80, 120,true,true),
         new Hitbox(80, this.size.height-150,startWidthSize, startHeightSize,true,true),
-        new Velocity(0,0,-10,7),
+        new Velocity(0,0,-8.5,7),
       //  new Animation(this.assets.images['mainChar'], [{'x': 0, 'y': 0, 'width': 80, 'height': 120}]),
         new Animation(this.assets.images['mainChar'],
         [{'x': 0, 'y': 0, 'width': startWidthSize, 'height': startHeightSize},
@@ -99,7 +99,7 @@ function start() {
 
     for (var i = 0; i< 30; i++ ){
         this.world.add(new Entity('box', [
-            new Position(random(450), (-180*(i+1))),
+            new Position(random(450), (-150*(i+1))),
             new Animation(this.assets.images['box'], [{'x': 0, 'y': 0, 'width': 300, 'height': 300}],0,scale),
             new Hitbox(50, -1000,boxSize,boxSize,false),
             new Velocity(0,0,-1.2,1.2),
