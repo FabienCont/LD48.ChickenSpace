@@ -1355,6 +1355,8 @@ function animate(entity) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_components_position_js__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_components_velocity_js__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_components_jump_js__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_components_hitbox__ = __webpack_require__(50);
+
 
 
 
@@ -1389,25 +1391,24 @@ function input(entity) {
 
                 case 'KEY_RIGHT':
 
-                    entity.add([
+                  entity.add([
 
                         new __WEBPACK_IMPORTED_MODULE_1_components_direction_js__["a" /* Direction */]('RIGHT'),
-                        new __WEBPACK_IMPORTED_MODULE_2_components_run_js__["a" /* Run */](),
-                        new __WEBPACK_IMPORTED_MODULE_4_components_position_js__["a" /* Position */](positionComponent.x + 5,positionComponent.y),
+                        new __WEBPACK_IMPORTED_MODULE_2_components_run_js__["a" /* Run */]()
                         //new Animation(spritesheetComponent.image, spritesheetComponent.animations['RUN_RIGHT'])
-                    ]);
+                  ]);
+
 
                 break;
 
                 case 'KEY_LEFT':
 
                     entity.add([
-
-                        new __WEBPACK_IMPORTED_MODULE_1_components_direction_js__["a" /* Direction */]('LEFT'),
-                        new __WEBPACK_IMPORTED_MODULE_2_components_run_js__["a" /* Run */](),
-                        new __WEBPACK_IMPORTED_MODULE_4_components_position_js__["a" /* Position */](positionComponent.x-5,positionComponent.y),
-                        //new Animation(spritesheetComponent.image, spritesheetComponent.animations['RUN_LEFT'])
+                          new __WEBPACK_IMPORTED_MODULE_1_components_direction_js__["a" /* Direction */]('LEFT'),
+                          new __WEBPACK_IMPORTED_MODULE_2_components_run_js__["a" /* Run */]()
+                          //new Animation(spritesheetComponent.image, spritesheetComponent.animations['RUN_LEFT'])
                     ]);
+
 
                 break;
             }
@@ -1501,6 +1502,8 @@ function render(entity) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return movement; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_components_position_js__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_components_run_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_components_hitbox__ = __webpack_require__(50);
+
 
 
 
@@ -1509,11 +1512,24 @@ function movement(entity) {
   const directionComponent = entity.get('direction');
   const inputComponent = entity.get('input');
   const positionComponent = entity.get('position');
+  const hitboxComponent = entity.get('hitbox');
 
   if ( entity.has(['run']) && directionComponent.direction === 'LEFT') {
-    positionComponent.x -= 4;
+
+    var defaultMovement =5;
+    if(positionComponent.x -5< 0){
+      defaultMovement=(positionComponent.x +5);
+    }
+    positionComponent.x =positionComponent.x-defaultMovement,positionComponent.y;
+
   }else if( entity.has(['run']) && directionComponent.direction === 'RIGHT'){
-    positionComponent.x += 4;
+
+    var defaultMovement =5;
+    if(positionComponent.x +5+hitboxComponent.rectangle.width > this.size.width){
+      defaultMovement=this.size.width -(positionComponent.x + hitboxComponent.rectangle.width) ;
+    }
+    positionComponent.x =positionComponent.x + defaultMovement;
+
   }
 
 }
@@ -1774,12 +1790,14 @@ function renderText(entity) {
 
      if(-positionComponent.y>scoreComponent.total  && -positionComponent.y > 0){
          scoreComponent.total=- positionComponent.y;
+         this.score = scoreComponent.total= Math.floor(scoreComponent.total);
      }
 
      this.context.lineWidth = 2;
      this.context.font="20px Arial";
      this.context.strokeStyle = 'black';
      this.context.strokeText("Score : "+scoreComponent.total, this.size.width - 140, 50);
+
 
 }
 
@@ -2436,12 +2454,12 @@ function start() {
 
     this.world.add(new __WEBPACK_IMPORTED_MODULE_0_modules_world_js__["a" /* Entity */]('final score', [
         new __WEBPACK_IMPORTED_MODULE_3_components_score_js__["a" /* Score */](this.score),
-        new __WEBPACK_IMPORTED_MODULE_2_components_position_js__["a" /* Position */](this.size.width/2-90,this.size.height/2-100)
+        new __WEBPACK_IMPORTED_MODULE_2_components_position_js__["a" /* Position */](this.size.width/2-45,this.size.height/2-100)
     ]));
 
     this.world.add(new __WEBPACK_IMPORTED_MODULE_0_modules_world_js__["a" /* Entity */]('button', [
         new __WEBPACK_IMPORTED_MODULE_4_components_button_js__["a" /* Button */]("Press Space to Retry"),
-        new __WEBPACK_IMPORTED_MODULE_2_components_position_js__["a" /* Position */](this.size.width/2-90,this.size.height/2+10),
+        new __WEBPACK_IMPORTED_MODULE_2_components_position_js__["a" /* Position */](this.size.width/2-80,this.size.height/2+10),
         new __WEBPACK_IMPORTED_MODULE_1_components_input_js__["a" /* Input */](['KEY_SPACE'])
     ]));
 

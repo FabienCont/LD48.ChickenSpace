@@ -5,6 +5,7 @@ import {Spritesheet} from 'components/spritesheet.js';
 import {Position} from 'components/position.js';
 import {Velocity} from 'components/velocity.js';
 import {Jump} from 'components/jump.js';
+import {Hitbox} from 'components/hitbox';
 
 function input(entity) {
 
@@ -32,25 +33,24 @@ function input(entity) {
 
                 case 'KEY_RIGHT':
 
-                    entity.add([
+                  entity.add([
 
                         new Direction('RIGHT'),
-                        new Run(),
-                        new Position(positionComponent.x + 5,positionComponent.y),
+                        new Run()
                         //new Animation(spritesheetComponent.image, spritesheetComponent.animations['RUN_RIGHT'])
-                    ]);
+                  ]);
+
 
                 break;
 
                 case 'KEY_LEFT':
 
                     entity.add([
-
-                        new Direction('LEFT'),
-                        new Run(),
-                        new Position(positionComponent.x-5,positionComponent.y),
-                        //new Animation(spritesheetComponent.image, spritesheetComponent.animations['RUN_LEFT'])
+                          new Direction('LEFT'),
+                          new Run()
+                          //new Animation(spritesheetComponent.image, spritesheetComponent.animations['RUN_LEFT'])
                     ]);
+
 
                 break;
             }

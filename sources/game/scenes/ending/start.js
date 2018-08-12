@@ -20,12 +20,12 @@ function start() {
 
     this.world.add(new Entity('final score', [
         new Score(this.score),
-        new Position(this.size.width/2-90,this.size.height/2-100)
+        new Position(this.size.width/2-45,this.size.height/2-100)
     ]));
 
     this.world.add(new Entity('button', [
         new Button("Press Space to Retry"),
-        new Position(this.size.width/2-90,this.size.height/2+10),
+        new Position(this.size.width/2-80,this.size.height/2+10),
         new Input(['KEY_SPACE'])
     ]));
 
