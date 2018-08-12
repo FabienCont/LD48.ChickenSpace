@@ -99,7 +99,7 @@ function start() {
 
     for (var i = 0; i< 30; i++ ){
         this.world.add(new Entity('box', [
-            new Position(random(450), (-150*(i+1))),
+            new Position(random(410), (-140*(i+1))),
             new Animation(this.assets.images['box'], [{'x': 0, 'y': 0, 'width': 300, 'height': 300}],0,scale),
             new Hitbox(50, -1000,boxSize,boxSize,false),
             new Velocity(0,0,-1.2,1.2),

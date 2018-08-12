@@ -2147,7 +2147,7 @@ function start() {
 
     for (var i = 0; i< 30; i++ ){
         this.world.add(new __WEBPACK_IMPORTED_MODULE_0_modules_world_js__["a" /* Entity */]('box', [
-            new __WEBPACK_IMPORTED_MODULE_5_components_position_js__["a" /* Position */](Object(__WEBPACK_IMPORTED_MODULE_1_modules_random_js__["a" /* random */])(450), (-150*(i+1))),
+            new __WEBPACK_IMPORTED_MODULE_5_components_position_js__["a" /* Position */](Object(__WEBPACK_IMPORTED_MODULE_1_modules_random_js__["a" /* random */])(410), (-140*(i+1))),
             new __WEBPACK_IMPORTED_MODULE_2_components_animation_js__["a" /* Animation */](this.assets.images['box'], [{'x': 0, 'y': 0, 'width': 300, 'height': 300}],0,scale),
             new __WEBPACK_IMPORTED_MODULE_8_components_hitbox_js__["a" /* Hitbox */](50, -1000,boxSize,boxSize,false),
             new __WEBPACK_IMPORTED_MODULE_7_components_velocity_js__["a" /* Velocity */](0,0,-1.2,1.2),
