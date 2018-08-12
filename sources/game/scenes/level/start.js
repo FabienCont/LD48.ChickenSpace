@@ -38,8 +38,8 @@ function start() {
     ]));
 
 
-          var startHeightSize =52;
-          var startWidthSize=64;
+    var startHeightSize =52;
+    var startWidthSize=64;
 
 
     var xSprite =64;
@@ -79,17 +79,16 @@ function start() {
 
     this.world.nuageCount=0;
     for (var i = 0; i< 200; i++ ){
-      var direction = "LEFT";
-      if (i%2==0) direction ="RIGHT";
+        var direction = "LEFT";
+        if (i%2==0) direction ="RIGHT";
 
-      this.world.add(new Entity('nuage', [
-          new Direction(direction),
-          new Decor(),
-          new Position(random(350), 200 -(300*(i))),
-          new Animation(this.assets.images['nuage'], [{'x': 0, 'y': 0, 'width': 200, 'height': 200}])
-      ]));
-      this.world.nuageCount++;
-
+        this.world.add(new Entity('nuage', [
+            new Direction(direction),
+            new Decor(),
+            new Position(random(350), 200 -(300*(i))),
+            new Animation(this.assets.images['nuage'], [{'x': 0, 'y': 0, 'width': 200, 'height': 200}])
+        ]));
+        this.world.nuageCount++;
     }
 
     this.world.boxCount=0;

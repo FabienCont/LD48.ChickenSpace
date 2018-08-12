@@ -4,9 +4,9 @@ function renderButton(entity) {
      const positionComponent = entity.get ('position');
 
      this.context.lineWidth = 2;
-     this.context.font="20px Arial";
-     this.context.strokeStyle = 'black';
-     this.context.strokeText(buttonComponent.text,positionComponent.x,positionComponent.y);
+     this.context.font="bold 25px Arial";
+     this.context.fillStyle="black";
+     this.context.fillText(buttonComponent.text,positionComponent.x,positionComponent.y);
 
 }
 

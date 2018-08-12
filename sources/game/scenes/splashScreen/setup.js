@@ -6,6 +6,8 @@ import {input} from 'systems/splashScreen/input.js';
 import {render} from 'systems/splashScreen/render.js';
 import {renderButton} from 'systems/splashScreen/renderButton.js';
 
+import {renderDecor} from 'systems/level/renderDecor.js';
+
 function setup() {
 
     console.log('setup splashScreen scene');
@@ -17,9 +19,10 @@ function setup() {
     this.systems = {
 
 
-        'render': new System(['position', 'animation'], render.bind(this)),
+        'render': new System(['position', 'animation','real'], render.bind(this)),
         'renderButton' : new System (['position','button'],renderButton.bind(this)),
         'input': new System(['input'], input.bind(this)),
+        'renderDecor' : new System(['decor','position'],renderDecor.bind(this))
 
     };
 }

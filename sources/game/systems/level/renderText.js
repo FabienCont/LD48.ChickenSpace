@@ -9,9 +9,9 @@ function renderText(entity) {
      }
 
      this.context.lineWidth = 2;
-     this.context.font="20px Arial";
-     this.context.strokeStyle = 'black';
-     this.context.strokeText("Score : "+scoreComponent.total, this.size.width - 140, 50);
+     this.context.font="bold 20px Arial";
+    this.context.fillStyle="black";
+    this.context.fillText("Score : "+scoreComponent.total, this.size.width - 150, 50);
 
 
 }
