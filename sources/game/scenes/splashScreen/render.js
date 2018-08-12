@@ -11,6 +11,7 @@ function render() {
     this.systems.renderDecor.update.call(this,this.world.entities);
     this.systems.render.update.call(this, this.world.entities);
     this.systems.renderButton.update.call(this,this.world.entities);
+    this.systems.renderTextHint.update.call(this,this.world.entities);
 }
 
 export {render};

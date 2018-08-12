@@ -46,7 +46,7 @@ function start() {
     var xSprite =64;
     this.world.add(new Entity('hero', [
         new Direction('DOWN'),
-        new Input(['KEY_UP', 'KEY_RIGHT', 'KEY_DOWN', 'KEY_LEFT']),
+        new Input(['KEY_UP', 'KEY_RIGHT', 'KEY_DOWN', 'KEY_LEFT','KEY_SPACE']),
         //new Position(80, this.size.height-150),
         new Position(80, this.size.height-150),
         new Real(),

@@ -30,6 +30,17 @@ function input(entity) {
 
               break;
 
+              case 'KEY_SPACE':
+                  if(!entity.has(['jump'])){
+                        velocityComponent.vy= velocityComponent.vyMin;
+                  }
+                  entity.add([
+                      new Jump()
+                  ]);
+
+              break;
+
+
                 case 'KEY_RIGHT':
 
                   entity.add([

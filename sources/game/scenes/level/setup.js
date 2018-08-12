@@ -1,5 +1,5 @@
 import {Keyboard} from 'modules/keyboard.js';
-import {DOWN, LEFT, RIGHT, UP} from 'modules/keycodes.js';
+import {DOWN, LEFT, RIGHT, UP,SPACE} from 'modules/keycodes.js';
 import {System} from 'modules/world.js';
 
 import {animate} from 'systems/level/animate.js';
@@ -19,7 +19,7 @@ function setup() {
 
     this.inputs = [];
 
-    this.keyboard = new Keyboard([RIGHT, LEFT, UP], this.inputs);
+    this.keyboard = new Keyboard([RIGHT, LEFT, UP,SPACE], this.inputs);
 
     this.systems = {
 

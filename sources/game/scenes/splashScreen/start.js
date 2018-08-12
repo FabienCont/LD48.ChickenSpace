@@ -13,7 +13,7 @@ import {TouchGround} from 'components/touchGround.js';
 
 import {Direction} from 'components/direction.js';
 import {Decor} from 'components/decor.js';
-
+import {Hint} from 'components/hint.js';
 function start() {
 
     this.firstParty=true;
@@ -56,13 +56,28 @@ function start() {
 
     this.world.add(new Entity('home', [
         new Button("CHICKEN  SPACE"),
-        new Position(this.size.width/2-100,this.size.height/2-100)
+        new Position(this.size.width/2-110,110)
     ]));
+
+
 
     this.world.add(new Entity('button', [
         new Button("Press Space to Play"),
-        new Position(this.size.width/2-110,this.size.height/2+10),
+        new Position(this.size.width/2-120,this.size.height/2-130),
         new Input(['KEY_SPACE'])
+    ]));
+
+
+    this.world.add(new Entity('hint', [
+        new Hint ("Go the highest you can jumping on boxes!"),
+        new Position(this.size.width/2-160,this.size.height/2+80)
+    ]));
+
+
+    this.world.add(new Entity('keyboard', [
+        new Decor(),
+        new Position(this.size.width/2-120, (this.size.height/2)+100),
+        new Animation(this.assets.images['keyboard'], [{'x': 0, 'y': 0, 'width': 335, 'height': 250}],0,0.5)
     ]));
 
 

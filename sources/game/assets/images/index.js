@@ -15,6 +15,10 @@ const images = [
     {
       'name' : 'nuage',
       'source' : require ('./nuage.png')
+    },
+    {
+      'name' : 'keyboard',
+      'source' : require ('./arrowKeys.png')
     }
 ];
 
