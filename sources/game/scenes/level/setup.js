@@ -13,7 +13,7 @@ import {renderText} from 'systems/level/renderText.js';
 
 function setup() {
 
-    console.log('setup demo scene');
+    console.log('setup level scene');
 
     this.inputs = [];
 

@@ -3,7 +3,7 @@ import {shuffle} from 'modules/shuffle.js';
 
 function update(delta) {
 
-    // console.log('update level scene');
+    //console.log('update level scene');
     this.delta = delta;
 
     this.systems.input.update.call(this, this.world.entities);

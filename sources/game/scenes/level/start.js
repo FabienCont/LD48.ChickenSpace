@@ -7,11 +7,11 @@ import {Position} from 'components/position.js';
 import {Spritesheet} from 'components/spritesheet.js';
 import {Velocity} from 'components/velocity.js';
 import {Hitbox} from 'components/hitbox.js';
-import {Score} from 'components/Score.js';
+import {Score} from 'components/score.js';
 
 function start() {
 
-    console.log('start demo scene');
+    console.log('start level scene');
 
     this.delta = 0;
     this.inputs.length = 0;
@@ -24,9 +24,9 @@ function start() {
     this.world.add(new Entity('hero', [
         new Direction('DOWN'),
         new Input(['KEY_UP', 'KEY_RIGHT', 'KEY_DOWN', 'KEY_LEFT']),
-        new Position(this.size.width/2, this.size.height-150),
+        new Position(80, this.size.height-150),
         new Score(),
-        new Hitbox(this.size.width/2, this.size.height-150,80, 120,true,true),
+        new Hitbox(80, this.size.height-150,80, 120,true,true),
         new Velocity(0,0,-8,6),
         new Animation(this.assets.images['mainChar'], [{'x': 0, 'y': 0, 'width': 80, 'height': 120}]),
         new Spritesheet(

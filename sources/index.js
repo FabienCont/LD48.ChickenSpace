@@ -6,7 +6,7 @@ new Theatre({
     'debug': true,
     'framerate': 60,
     'loading': 'loading',
-    'opening': 'level',
+    'opening': 'splashScreen',
     'size': {
         'width': 450 ,
         'height': 600

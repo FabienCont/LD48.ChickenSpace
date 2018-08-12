@@ -32,7 +32,7 @@ function collision(entity) {
             if(!hitboxComponent.destructible && distance.y<0){
               throw BreakException;
             }else if(hitboxComponent.destructible && distance.y>0){
-              this.restart();
+              this.load('ending');
             }
           }
         }

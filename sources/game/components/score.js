@@ -1,8 +1,12 @@
-function Score() {
+function Score(score) {
 
     this.name = 'score';
-    this.total = 0;
-    
+    if(score==undefined){
+      this.total = 0;
+    } else{
+      this.total=score;
+    }
+
 }
 
 export {Score};
